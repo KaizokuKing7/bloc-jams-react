@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import albumData from './../data/albums';
+import albumData from '../data/albums';
 
 class Album extends Component {
     constructor(props){
@@ -11,7 +11,8 @@ class Album extends Component {
         this.state = {
             album: album ,
             currentSong: album.songs[0],
-            isPlaying: false
+            isPlaying: false,
+            isHovered: false
         };
 
         this.audioElement = document.createElement('audio');
@@ -41,6 +42,17 @@ class Album extends Component {
             this.play();
         }
     }
+    
+    onHover(song,index){
+        if (this.state.isPlaying && song ===this.state.currentSong){
+            return(<span className='icon ion-md-pause'></span>);
+        }else if (song === this.state.currentSong){
+            return(<span className='icon ion-md-play'></span>);
+            
+        }return(index +1)
+    }
+
+
 
     render() {
       return (
@@ -61,8 +73,11 @@ class Album extends Component {
                 </colgroup>  
                 <tbody>
                     {this.state.album.songs.map((song,index) =>
-                        <tr className='song' key={index} onClick={() => this.handleSongClick(song)}>
-                            <td>{index +1}</td>
+                        <tr className='song' key={index} 
+                        onClick={() => this.handleSongClick(song)} 
+                        onMouseEnter={()=>this.onHover(song,index)} >
+                            
+                            <td>{this.onHover(song,index)}</td> 
                             <td>{song.title}</td>
                             <td>{song.duration}</td>
                         </tr>
