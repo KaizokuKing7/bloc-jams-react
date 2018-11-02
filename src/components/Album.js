@@ -42,17 +42,24 @@ class Album extends Component {
             this.play();
         }
     }
-    
-    onHover(song,index){
-        if (this.state.isPlaying && song ===this.state.currentSong){
-            return(<span className='icon ion-md-pause'></span>);
-        }else if (song === this.state.currentSong){
-            return(<span className='icon ion-md-play'></span>);
-            
-        }return(index +1)
+
+    isHovering(song){
+        this.setState({isHovered: song})
     }
 
-
+    notHovering(){
+        this.setState({isHovered: false})
+    }
+    
+    onHover(song,index){
+        if (this.state.isPlaying && song === this.state.currentSong ){
+            return(<span className='icon ion-md-pause'></span>);
+        }else if (this.state.isHovered === song && song !== this.state.currentSong){
+            return(<span className='icon ion-md-play'></span>);   
+        }else if (this.state.isHovered === song && this.state.currentSong === song  ){
+            return(<span className='icon ion-md-play'></span>);   
+        }return(index +1)
+    }
 
     render() {
       return (
@@ -74,8 +81,9 @@ class Album extends Component {
                 <tbody>
                     {this.state.album.songs.map((song,index) =>
                         <tr className='song' key={index} 
-                        onClick={() => this.handleSongClick(song)} 
-                        onMouseEnter={()=>this.onHover(song,index)} >
+                        onClick={() => this.handleSongClick(song)}
+                        onMouseEnter={()=> this.isHovering(song)}
+                        onMouseLeave={()=> this.notHovering()}>
                             
                             <td>{this.onHover(song,index)}</td> 
                             <td>{song.title}</td>
@@ -90,3 +98,4 @@ class Album extends Component {
   }
 
   export default Album;
+
