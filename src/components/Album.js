@@ -104,6 +104,13 @@ class Album extends Component {
         this.setState({curentTime: newTime});
     }
 
+    formatTime(duration){
+        const minutes = Math.floor(duration /60);
+        const seconds = Math.floor(duration % 60);
+        const convertedTime = `${minutes}:${seconds}`;
+        return (convertedTime);
+    }
+
 
     render() {
       return (
@@ -131,7 +138,7 @@ class Album extends Component {
                             
                             <td>{this.onHover(song,index)}</td> 
                             <td>{song.title}</td>
-                            <td>{song.duration}</td>
+                            <td>{this.formatTime(song.duration)}</td>
                         </tr>
                         )}
                 </tbody>
@@ -145,6 +152,7 @@ class Album extends Component {
             handlePrevClick={() => this.handlePrevClick()}
             handleNextClick={() => this.handleNextClick()}
             handleTimeChange={(e) => this.handleTimeChange(e)}
+            formatTime={()=> this.formatTime(this.state.currentSong.duration)}
             />
         </section>
       );
