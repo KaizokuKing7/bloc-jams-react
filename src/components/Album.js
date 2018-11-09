@@ -102,10 +102,7 @@ class Album extends Component {
     handleTimeChange(e){
         const newTime = this.audioElement.duration * e.target.value;
         this.audioElement.currentTime = newTime;
-        const minutes = Math.floor(newTime /60);
-        const seconds = Math.floor(newTime % 60);
-        const convertedTime = `${minutes}:${seconds}`;
-        this.setState({curentTime: convertedTime});
+        this.setState({curentTime: newTime});
     }
 
     formatTime(duration){
