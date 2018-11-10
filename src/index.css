@@ -4,12 +4,12 @@ code {
     monospace;
 }
 
-/*.landing {
-
-}*/
+body {
+  background-color:gray;
+}
 
 .albumInfo{
-  color: gray;
+  color: black;
   
 }
 #song-list{
@@ -20,9 +20,8 @@ code {
   border: 0;
   }
 
-.mdl-slider__container{   
+.slider-container {   
   width: max-content;
   margin-right: auto;
   margin-left: auto;
   }
-  

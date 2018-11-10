@@ -16,7 +16,8 @@ import React, { Component } from 'react';
                 </button>
             </section>
             <section id="time-control">
-                <div className="current-time">{this.props.currentTime}</div>
+                <div className="current-time">{this.props.time}</div>
+                <div className='slider-container'>
                 <input 
                     type="range" 
                     className=" mdl-slider mdl-js-slider" 
@@ -26,11 +27,21 @@ import React, { Component } from 'react';
                     step= '0.01'
                     onChange={this.props.handleTimeChange}
                     />
+                </div>
                 <div className="total-time">{this.props.formatTime()}</div>
             </section>
             <section id="volume-control">
-                <div className="icon ion-md-volume-low "></div>
-                <input type="range" className=" mdl-slider mdl-js-slider" value="80" />
+                <div className="icon ion-md-volume-low"></div>
+                <div className='slider-container'>
+                <input 
+                    className="mdl-slider mdl-js-slider"
+                    type="range"    
+                    max='1'
+                    min='0'
+                    step='0.01'
+                    onChange={this.props.handleVolumeChange}
+                     />
+                </div>
                 <div className="icon ion-md-volume-high"></div>
             </section>
        </section>

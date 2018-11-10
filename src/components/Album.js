@@ -15,7 +15,8 @@ class Album extends Component {
             isPlaying: false,
             isHovered: false,
             currentTime:0,
-            duration:album.songs[0].duration
+            duration:album.songs[0].duration,
+            volume: 1
         };
 
         this.audioElement = document.createElement('audio');
@@ -111,6 +112,12 @@ class Album extends Component {
         return (convertedTime);
     }
 
+    handleVolumeChange(e){
+        const newVol =  e.target.value;
+        this.audioElement.volume = newVol;
+        this.setState({volume: newVol});
+    }
+
 
     render() {
       return (
@@ -137,7 +144,7 @@ class Album extends Component {
                         onMouseLeave={()=> this.notHovering()}>
                             
                             <td>{this.onHover(song,index)}</td> 
-                            <td className="mdl-data-table__cell--non-numeric">{song.title}</td>
+                            <td className="mdl-data-table__cell--non-numeric mdl-button--primary">{song.title}</td>
                             <td>{this.formatTime(song.duration)}</td>
                         </tr>
                         )}
@@ -147,12 +154,15 @@ class Album extends Component {
             isPlaying={this.state.isPlaying} 
             currentSong={this.state.currentSong}
             currentTime={this.audioElement.currentTime}
+            time={this.formatTime(this.audioElement.currentTime)}
             duration={this.audioElement.duration}
             handleSongClick={() => this.handleSongClick(this.state.currentSong)}
             handlePrevClick={() => this.handlePrevClick()}
             handleNextClick={() => this.handleNextClick()}
             handleTimeChange={(e) => this.handleTimeChange(e)}
             formatTime={()=> this.formatTime(this.state.currentSong.duration)}
+            handleVolumeChange={(e) => this.handleVolumeChange(e)}
+            volume={this.audioElement.volume}
             />
         </section>
       );
