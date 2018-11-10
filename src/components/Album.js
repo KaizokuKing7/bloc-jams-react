@@ -123,7 +123,7 @@ class Album extends Component {
                     <div id="release-info">{this.state.album.releaseInfo}</div>
                 </div>
             </section>
-            <table id="song-list">
+            <table id="song-list" className='mdl-data-table mdl-js-data-table'>
                 <colgroup>
                     <col id="song-number-column" />
                     <col id="song-title-column" />
@@ -137,7 +137,7 @@ class Album extends Component {
                         onMouseLeave={()=> this.notHovering()}>
                             
                             <td>{this.onHover(song,index)}</td> 
-                            <td>{song.title}</td>
+                            <td className="mdl-data-table__cell--non-numeric">{song.title}</td>
                             <td>{this.formatTime(song.duration)}</td>
                         </tr>
                         )}
