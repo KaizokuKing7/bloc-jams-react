@@ -25,3 +25,17 @@ body {
   margin-right: auto;
   margin-left: auto;
   }
+
+  .selling-points{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .point{
+    flex:1;
+  }
+
+  .library{
+    display: flex;
+    justify-content: space-around;
+  }
